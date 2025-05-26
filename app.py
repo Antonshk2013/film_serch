@@ -1,4 +1,3 @@
-import logging
 from flask import Flask, render_template, request
 from models import *
 from forms import SerchForm
@@ -7,8 +6,8 @@ from orm import PER_PAGE
 from logger_config import logger
 
 
-log = logging.getLogger(__name__)
-log.info("Приложение запущено")
+logger = logging.getLogger(__name__)
+logger.info("Приложение запущено")
 
 
 
