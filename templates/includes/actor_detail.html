@@ -1,0 +1,31 @@
+<div class="container mt-4">
+
+    <h1>{{ content.actor.first_name.capitalize() }} {{ content.actor.last_name.capitalize() }}</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+             <tbody>
+             {% for key, value in content.actor.items() %}
+                  <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ value }}</td>
+                  </tr>
+             {% endfor %}
+                 <tr>
+                    <td>Films</td>
+                    <td>
+                        {% for film in content.films %}
+                            <a href="{{ url_for('view_film_detail', film_id=film.film_id) }}"
+                            class="badge bg-secondary text-decoration-none me-1 mb-1 d-inline-block">{{ film.release_year }} — {{ film.title }}
+                            </a>
+                        {% endfor %}
+                    </td>
+                </tr>
+             </tbody>
+        </table>
+    </div>

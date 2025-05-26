@@ -1,0 +1,30 @@
+<div class="container mt-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+             <tbody>
+             {% for key, value in content.film.items() %}
+                  <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ value }}</td>
+                  </tr>
+            {% endfor %}
+             <tr>
+                    <td>Actors</td>
+                    <td>
+  {% for actor in content.actors %}
+    <a href="{{ url_for('view_actor_detail', actor_id=actor.actor_id) }}"
+       class="badge bg-primary text-decoration-none me-1">
+      {{ actor.first_name.capitalize() }} {{ actor.last_name.capitalize() }}
+    </a>
+  {% endfor %}
+</td>
+
+                  </tr>
+             </tbody>
+        </table>
+    </div>

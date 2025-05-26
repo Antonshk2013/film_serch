@@ -1,0 +1,55 @@
+<div class="container mt-4">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Название фильма</th>
+                <th>Описание</th>
+                <th>Год выпуска</th>
+                <th>Жанр</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for film in content.films %}
+                <tr>
+                    <td><a href="{{ url_for('view_film_detail', film_id=film.film_id) }}">{{ film.title }}</a></td>
+                    <td>{{ film.description }}</td>
+                    <td>{{ film.release_year }}</td>
+                    <td>{{ film.name }} </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+        <ul class="pagination">
+            <li class="page-item {% if content.page <= 1 %}disabled{% endif %}">
+                <a class="page-link" href="{{ url_for('index',
+                                                    page=content.page - 1,
+                                                    film=request.args.get('film'),
+                                                    actor=request.args.get('actor'),
+                                                    category=request.args.get('category'),
+                                                    year=request.args.get('year')) }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% for p in content.pages %}
+                <li class="page-item {% if p == content.page %}active{% endif %}">
+                    <a class="page-link" href="{{ url_for('index', page=p, film=request.args.get('film'),
+                                                    actor=request.args.get('actor'),
+                                                    category=request.args.get('category'),
+                                                    year=request.args.get('year')) }}">{{ p }}
+                    </a>
+                </li>
+            {% endfor %}
+            <li class="page-item {% if content.page >= content.total_pages %}disabled{% endif %}">
+                <a class="page-link" href="{{ url_for('index',
+                                                    page=content.page+ 1,
+                                                    film=request.args.get('film'),
+                                                    actor=request.args.get('actor'),
+                                                    category=request.args.get('category'),
+                                                    year=request.args.get('year')) }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

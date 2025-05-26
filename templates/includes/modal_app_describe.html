@@ -1,0 +1,59 @@
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">🎬 Flask Movie Search — Веб-приложение для поиска фильмов</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Flask Movie Search</strong> — это веб-приложение для просмотра и поиска информации о фильмах, актёрах и жанрах. Приложение построено на Flask с использованием шаблонов Jinja2, подключено к базе данных MySQL и использует собственную ORM-реализацию для выполнения запросов.</p>
+
+  <h2>🚀 Возможности</h2>
+  <ul>
+    <li>Поиск фильмов с фильтрами</li>
+    <li>Просмотр детальной информации о фильмах, актёрах и жанрах</li>
+    <li>Поддержка пагинации</li>
+    <li>Популярные поисковые запросы</li>
+    <li>Логирование пользовательской активности и ошибок</li>
+  </ul>
+
+  <h2>⚙️ Технологии</h2>
+  <ul>
+    <li><strong>Backend:</strong> Flask, самописная ORM, Jinja2, logging</li>
+    <li><strong>База данных:</strong> MySQL 8</li>
+    <li><strong>Инфраструктура:</strong> Docker, Docker Compose</li>
+    <li><strong>Язык:</strong> Python 3.10</li>
+  </ul>
+
+  <h2>🐳 Docker Compose</h2>
+  <p>Приложение развёрнуто в двух контейнерах:</p>
+  <ul>
+    <li><code>mysql</code> — контейнер с MySQL 8.0</li>
+    <li><code>flask_app</code> — контейнер с Flask-приложением, которое запускается с помощью <code>flask run</code></li>
+  </ul>
+
+  <h2>📁 Структура проекта</h2>
+  <ul>
+    <li><code>app.py</code> — основной файл приложения</li>
+    <li><code>models.py</code>, <code>orm.py</code> — описание таблиц и запросов к базе данных</li>
+    <li><code>templates/</code> — Jinja2-шаблоны для отрисовки страниц</li>
+    <li><code>forms.py</code> — обработка форм поиска</li>
+    <li><code>logger_config.py</code> — настройка логгера</li>
+    <li><code>.env</code> — переменные окружения для конфигурации</li>
+  </ul>
+
+  <h2>💡 Особенности</h2>
+  <ul>
+    <li>Простой и читаемый интерфейс</li>
+    <li>Минимум сторонних зависимостей</li>
+    <li>Своя реализация ORM-запросов без SQLAlchemy</li>
+    <li>Гибкая структура Query Builder-а с поддержкой JOIN, WHERE, ORDER, LIMIT/OFFSET</li>
+  </ul>
+  </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ясно</button>
+            </div>
+        </div>
+    </div>
+</div>

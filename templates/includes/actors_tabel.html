@@ -1,0 +1,37 @@
+<div class="container mt-4">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Имя Фамилия</th>
+            </tr>
+        </thead>
+         <tbody>
+         {% for actor in content.actors %}
+              <tr>
+                <td>{{ actor.actor_id }}</td>
+                  <td><a href="{{ url_for('view_actor_detail', actor_id = actor.actor_id) }}">{{ actor.first_name }} {{ actor.last_name }}</a></td>
+            </tr>
+        {% endfor %}
+         </tbody>
+    </table>
+    <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+        <ul class="pagination">
+            <li class="page-item {% if content.page <= 1 %}disabled{% endif %}">
+                <a class="page-link" href="{{ url_for('view_all_actors', page=content.page - 1) }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% for p in content.pages %}
+                <li class="page-item {% if p == content.page %}active{% endif %}">
+                    <a class="page-link" href="{{ url_for('view_all_actors', page=p) }}">{{ p }}</a>
+                </li>
+            {% endfor %}
+            <li class="page-item {% if content.page >= content.total_pages %}disabled{% endif %}">
+                <a class="page-link" href="{{ url_for('view_all_actors', page=content.page + 1) }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

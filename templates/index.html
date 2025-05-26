@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ content.title }}{% endblock %}
+
+{% block content %}
+  {% include "includes/navbar.html" %}
+
+  <div class="container py-5">
+    <div class="row">
+
+      <!-- Левая колонка: Популярные запросы -->
+      <div class="col-md-3">
+        {% if content.popular_queries %}
+          <h4 class="text-success">Популярные поисковые запросы</h4>
+          <ul class="list-group">
+            {% for key, value in content.popular_queries %}
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ key }}
+                <span class="badge bg-success rounded-pill">{{ value }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+
+      <!-- Правая колонка: форма поиска + результаты -->
+      <div class="col-md-9">
+
+        <!-- Заголовок -->
+        <h1 class="mb-4 text-center">Поиск фильмов</h1>
+
+        <!-- Форма поиска -->
+        <form class="row g-3 align-items-end" method="get" action="{{ url_for('index') }}">
+          <div class="col-md-3">
+            {{ form.film.label(class="form-label") }}
+            {{ form.film(class="form-control") }}
+            {% if form.film.errors %}
+              <div class="text-danger">
+                {% for error in form.film.errors %}
+                  <small>{{ error }}</small>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="col-md-3">
+            {{ form.actor.label(class="form-label") }}
+            {{ form.actor(class="form-control") }}
+            {% if form.actor.errors %}
+              <div class="text-danger">
+                {% for error in form.actor.errors %}
+                  <small>{{ error }}</small>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="col-md-3">
+            {{ form.category.label(class="form-label") }}
+            {{ form.category(class="form-control") }}
+            {% if form.category.errors %}
+              <div class="text-danger">
+                {% for error in form.category.errors %}
+                  <small>{{ error }}</small>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="col-md-2">
+            {{ form.year.label(class="form-label") }}
+            {{ form.year(class="form-control") }}
+            {% if form.year.errors %}
+              <div class="text-danger">
+                {% for error in form.year.errors %}
+                  <small>{{ error }}</small>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="col-md-1">
+            {{ form.submit(class="btn btn-primary w-100") }}
+          </div>
+        </form>
+
+        <!-- Результаты поиска -->
+        {% if content.films %}
+          <div class="mt-5">
+            {% include "includes/find_result_table.html" %}
+          </div>
+        {% endif %}
+
+      </div> <!-- /col-md-9 -->
+    </div> <!-- /row -->
+  </div> <!-- /container -->
+    {% include "includes/modal_app_describe.html" %}
+
+{% endblock %}
